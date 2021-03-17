@@ -4,11 +4,11 @@ library(gapminder)
 #           mu = number indicating the null hypothesis value of the mean
 # Return: a list with elements test_stat, df, alternative, p_val
 my_t.test <- function(x, alternative, mu) {
-  x <- length(my_gapminder %>% select(4))
+
   # calculate standard error
   std_error <- sd(x) / sqrt(length(x))
   # calculate t-statistic value
-  t_stat <- (mean(x) - mu ) / std_error
+  t_stat <- (mean(x) - mu) / std_error
   # store degree of freedom
   deg_freedom <- length(x) - 1
 
