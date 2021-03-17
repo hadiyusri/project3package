@@ -28,9 +28,11 @@ We have prepared codes below to view vignetter in the HTML format. Just copy the
 codes and run them at the console:
 
 ``` {r, eval + FALSE}
-library(corncob)
+library(project3package)
+
 # Use this to view the vignette in the project3package HTML help
 help(package = "project3package", help_type = "html")
+
 # Use this to view the vignette as an isolated HTML file
 utils::browseVignettes(package = "project3package")
 ```
