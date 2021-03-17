@@ -10,7 +10,8 @@
 <!-- badges: end -->
 
 The goal of project3package is to compute four different functions that calculate
-the t-test hypothesis testing of a data, the linear regression models,
+the t-test hypothesis testing of a data, the linear regression models, and two methods
+of cross validation (the k-nearest neighbors and random forest cross validation).
 
 ## Installation
 
