@@ -5,7 +5,8 @@
 [![R-CMD-check](https://github.com/hadiyusri/project3package/workflows/R-CMD-check/badge.svg)](https://github.com/hadiyusri/project3package/actions)
 <!-- badges: end -->
 
-The goal of project3package is to ...
+The goal of project3package is to compute four different functions that calculate
+the t-test hypothesis testing of a data, the linear regression models,
 
 ## Installation
 
