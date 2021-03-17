@@ -1,5 +1,5 @@
 Package: project3package
-Title: What the Package Does (One Line, Title Case)
+Title: Tests Related To Hypothesis Testing, Linear Regression, Cross Validation.
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "First",
@@ -7,7 +7,8 @@ Authors@R:
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: Compiling functions that test the t-test hypopthesis testing,
+the summary of linear regression model, and the cross validation methods.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
