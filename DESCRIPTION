@@ -2,11 +2,10 @@ Package: project3package
 Title: Tests Related To Hypothesis Testing, Linear Regression, Cross Validation.
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Hadi",
+           family = "Yusri",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "muhdahmad925@gmail.com")
 Description: Compiling functions that test the t-test hypopthesis testing,
     the summary of linear regression model, and the cross validation methods.
 License: GPL (>= 3)
@@ -18,6 +17,7 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown
+    covr
 Config/testthat/edition: 3
 Depends: 
     R (>= 2.10)

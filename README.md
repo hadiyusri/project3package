@@ -5,6 +5,10 @@
 [![R-CMD-check](https://github.com/hadiyusri/project3package/workflows/R-CMD-check/badge.svg)](https://github.com/hadiyusri/project3package/actions)
 <!-- badges: end -->
 
+<!-- badges: start -->
+[![codecov](https://codecov.io/gh/hadiyusri/project3package/branch/master/graph/badge.svg?token=X93F72Y1SJ)](https://codecov.io/gh/hadiyusri/project3package)
+<!-- badges: end -->
+
 The goal of project3package is to compute four different functions that calculate
 the t-test hypothesis testing of a data, the linear regression models,
 
