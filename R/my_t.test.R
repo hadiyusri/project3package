@@ -20,6 +20,7 @@
 #' my_t.test(x, "two.sided", 60)
 #'
 #' @export
+library(tidyverse)
 library(gapminder)
 x <- my_gapminder %>% pull(lifeExp)
 my_t.test <- function(x, alternative, mu) {

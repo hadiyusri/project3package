@@ -9,18 +9,23 @@ The goal of project3package is to ...
 
 ## Installation
 
-You can install the released version of project3package from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of project3package from the codes below:
 
-``` r
+``` {r, eval = FALSE}
 install.packages("project3package")
+library(project3package)
 ```
 
-## Example
+## Viewing the vignette
 
-This is a basic example which shows you how to solve a common problem:
+We have prepared codes below to view vignetter in the HTML format. Just copy the
+codes and run them at the console:
 
-``` r
-library(project3package)
-## basic example code
+``` {r, eval + FALSE}
+library(corncob)
+# Use this to view the vignette in the project3package HTML help
+help(package = "project3package", help_type = "html")
+# Use this to view the vignette as an isolated HTML file
+utils::browseVignettes(package = "project3package")
 ```
 

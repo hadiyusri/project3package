@@ -8,7 +8,7 @@ Authors@R:
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Compiling functions that test the t-test hypopthesis testing,
-the summary of linear regression model, and the cross validation methods.
+    the summary of linear regression model, and the cross validation methods.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
