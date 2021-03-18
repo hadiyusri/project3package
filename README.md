@@ -27,7 +27,7 @@ library(project3package)
 We have prepared codes below to view vignetter in the HTML format. Just copy the
 codes and run them at the console:
 
-``` {r, eval + FALSE}
+``` {r, eval = FALSE}
 library(project3package)
 
 # Use this to view the vignette in the project3package HTML help

@@ -7,7 +7,7 @@
 #'
 #' @param formula the regression formula used based on the data given in a package
 #' @param data tinput data frame
-#' @keywords regression, linear model
+#' @keywords regression, linear model, inference, prediction
 #'
 #' @return a table similar to coefficient table of lm()
 #'
