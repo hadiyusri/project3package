@@ -1,3 +1,13 @@
+#' the t-test calculator
+#'
+#' This function calculates values associated to the t-test such as the
+#' test statistics, p-value, degree of freedom, and the conclusion on
+#' whether we reject or fail to reject the null hypothesis tested from
+#' lifeExp data in the gapminder package.
+#'
+#' @param x the numeric vector of lifeExp pulled from the gapminder data
+#' @param alternative the one-sided or two-sided test
+#' @param mu the mean value tested given from the null hypothesis (mu = 60)
 #' @keywords hypothesis, inference
 #'
 #' @return A list indicating test statistics, p-value, degree of freedom,

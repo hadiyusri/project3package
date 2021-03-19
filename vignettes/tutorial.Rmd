@@ -20,13 +20,13 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(magrittr)
 library(dplyr)
-library(FirstPackage)
+library(project3package)
 library(kableExtra)
 library(ggplot2)
 ```
 
 ```{r, eval = FALSE}
-devtools::install_github("anasmuhd/FirstPackage", build_vignette = TRUE, build_opts = c())
+#devtools::install_github("hadiyusri/project3package", build_vignette = TRUE, build_opts = c())
 ```
 
 ### my_t.test
