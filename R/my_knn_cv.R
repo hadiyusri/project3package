@@ -18,6 +18,7 @@
 #' my_knn_cv(data_p[, -1], data_p[, 1], 5, 5)
 #'
 #' @export
+
 library(palmerpenguins)
 library(class)
 library(tidyverse)

@@ -53,8 +53,8 @@ $$\alpha = 0.05$$
 
 # Test 1, alternative = less
 ```{r}
-data(my_gapminder)
-my_t.test(my_gapminder$lifeExp, "less", 60)
+# data(my_gapminder)
+# my_t.test(my_gapminder$lifeExp, "less", 60)
 
 ```
 
@@ -64,7 +64,7 @@ hypothesis, given that the mu is equal to 60.
 
 # Test 2, alternative = greater
 ```{r}
-my_t.test(my_gapminder$lifeExp, "greater", 60)
+# my_t.test(my_gapminder$lifeExp, "greater", 60)
 
 ```
 
@@ -74,7 +74,7 @@ hypothesis, given that the mu is equal to 60.
 
 # Test 3, alternative = two.sided
 ```{r}
-my_t.test(my_gapminder$lifeExp, "two.sided", 60)
+# my_t.test(my_gapminder$lifeExp, "two.sided", 60)
 
 ```
 
@@ -95,9 +95,9 @@ The function carries the following steps:
 The demonstration is as following:
 
 ```{r}
-my_model <- my_lm(lifeExp ~ gdpPercap * continent, 
-                my_gapminder[c("lifeExp", "gdpPercap", "continent")])
-my_model
+# my_model <- my_lm(lifeExp ~ gdpPercap * continent, 
+#                 my_gapminder[c("lifeExp", "gdpPercap", "continent")])
+# my_model
 ```
 
 # Deliberated from the output, we can see that the estimated gdpPercap 
@@ -107,16 +107,16 @@ growth for gdpPercap almost 100 times higher than the lifeExp.
 
 ```{r}
 # the plot of actual vs. fitted values
-lm_fit <- lm(lifeExp ~ gdpPercap * continent, 
-             my_gapminder[c("lifeExp", "gdpPercap", "continent")])
-mod_fits <- fitted(lm_fit)
-my_df <- data.frame(actual = my_gapminder$lifeExp, fitted = mod_fits)
-ggplot(my_df, aes(x = fitted, y = actual)) +
-  geom_point() +
-  geom_abline(slope = 1, intercept = 0, col = "red", lty = 2) + 
-  theme_bw(base_size = 12) +
-  labs(x = "Fitted values", y = "Actual values", title = "Actual vs. Fitted") +
-  theme(plot.title = element_text(hjust = 0.5))
+# lm_fit <- lm(lifeExp ~ gdpPercap * continent, 
+#              my_gapminder[c("lifeExp", "gdpPercap", "continent")])
+# mod_fits <- fitted(lm_fit)
+# my_df <- data.frame(actual = my_gapminder$lifeExp, fitted = mod_fits)
+# ggplot(my_df, aes(x = fitted, y = actual)) +
+#   geom_point() +
+#   geom_abline(slope = 1, intercept = 0, col = "red", lty = 2) + 
+#   theme_bw(base_size = 12) +
+#   labs(x = "Fitted values", y = "Actual values", title = "Actual vs. Fitted") +
+#   theme(plot.title = element_text(hjust = 0.5))
 ```
 
 # Explanation: As we can see, the fitted values allows a linear regression line to be formed
@@ -141,22 +141,22 @@ k_cv- integer representing the number of folds
 The demonstration is as following:
 
 ```{r}
-covariates <- my_penguins[c("bill_length_mm", "bill_depth_mm", 
-                            "flipper_length_mm", "body_mass_g")]
-class <- my_penguins[["species"]]
-cv_errs <- vector(length = 10)
-train_errs <- vector(length = 10)
-for (i in 1:10) {
-  cv_errs[i] <- my_knn_cv(covariates, class, i, 5)$cv_err
-  # Count how many data points are misclassified using normal knn
-  train_errs[i] <- 
-    length(which(class::knn(covariates, covariates, class, i) != class)) / 
-    nrow(my_penguins)
-}
-# Show table of errors
-err_df <- cbind(1:10, data.frame(cv_errs), data.frame(train_errs))
-colnames(err_df) <- c("k_nn", "cv_errs", "train_errs")
-err_df
+# covariates <- my_penguins[c("bill_length_mm", "bill_depth_mm", 
+#                             "flipper_length_mm", "body_mass_g")]
+# class <- my_penguins[["species"]]
+# cv_errs <- vector(length = 10)
+# train_errs <- vector(length = 10)
+# for (i in 1:10) {
+#   cv_errs[i] <- my_knn_cv(covariates, class, i, 5)$cv_err
+#   # Count how many data points are misclassified using normal knn
+#   train_errs[i] <- 
+#     length(which(class::knn(covariates, covariates, class, i) != class)) / 
+#     nrow(my_penguins)
+# }
+# # Show table of errors
+# err_df <- cbind(1:10, data.frame(cv_errs), data.frame(train_errs))
+# colnames(err_df) <- c("k_nn", "cv_errs", "train_errs")
+# err_df
 ```
 
 ### Explanation: By looking at the training misclassification rates, we would choose
@@ -182,43 +182,43 @@ parameter: k- the number of folds
 The function returns the numeric with cross validation error.
 
 ```{r}
-# data(my_penguins)
-my_penguins <- my_penguins %>% drop_na()
-
-# create a list to label the number of folds
-folds <- c(rep("2", 30), rep("5", 30), rep("10", 30))
-# create empty lists to store MSE
-MSE_2 <- rep(NA, length(30))
-MSE_5 <- rep(NA, length(30))
-MSE_10 <- rep(NA, length(30))
-# fill MSE data
-for (k in 1:30){
-  MSE_2[k] <- my_rf_cv(2)
-  MSE_5[k] <- my_rf_cv(5)
-  MSE_10[k] <- my_rf_cv(10)
-}
-# combine the label and data into one data frame
-MSE_data <- data.frame(names = folds,
-                       MSE = c(MSE_2, MSE_5, MSE_10))
-```
-```{r, fig.width=10,fig.height=11}
-# plot the data
-ggplot(data = MSE_data,
-       aes(x = names, MSE)) +
-  geom_boxplot(fill = "lightblue") +
-  theme_bw(base_size = 20) +
-  labs(title = "MSE According to Number of Folds",
-       x = "Number of Folds",
-       y = "MSE") +
-  theme(plot.title =
-          element_text(hjust = 0.5),
-        text = element_text(size = 12))  
-```
-```{r}
-MSE_table <- data.frame("folds" = c(2, 5, 10),
-                        "mean" = c(mean(MSE_2), mean(MSE_5), mean(MSE_10)),
-                        "std_deviation" = c(sd(MSE_2), sd(MSE_5), sd(MSE_10)))
-kable_styling(kable(MSE_table))
+# # data(my_penguins)
+# my_penguins <- my_penguins %>% drop_na()
+# 
+# # create a list to label the number of folds
+# folds <- c(rep("2", 30), rep("5", 30), rep("10", 30))
+# # create empty lists to store MSE
+# MSE_2 <- rep(NA, length(30))
+# MSE_5 <- rep(NA, length(30))
+# MSE_10 <- rep(NA, length(30))
+# # fill MSE data
+# for (k in 1:30){
+#   MSE_2[k] <- my_rf_cv(2)
+#   MSE_5[k] <- my_rf_cv(5)
+#   MSE_10[k] <- my_rf_cv(10)
+# }
+# # combine the label and data into one data frame
+# MSE_data <- data.frame(names = folds,
+#                        MSE = c(MSE_2, MSE_5, MSE_10))
+# ```
+# ```{r, fig.width=10,fig.height=11}
+# # plot the data
+# ggplot(data = MSE_data,
+#        aes(x = names, MSE)) +
+#   geom_boxplot(fill = "lightblue") +
+#   theme_bw(base_size = 20) +
+#   labs(title = "MSE According to Number of Folds",
+#        x = "Number of Folds",
+#        y = "MSE") +
+#   theme(plot.title =
+#           element_text(hjust = 0.5),
+#         text = element_text(size = 12))  
+# ```
+# ```{r}
+# MSE_table <- data.frame("folds" = c(2, 5, 10),
+#                         "mean" = c(mean(MSE_2), mean(MSE_5), mean(MSE_10)),
+#                         "std_deviation" = c(sd(MSE_2), sd(MSE_5), sd(MSE_10)))
+# kable_styling(kable(MSE_table))
 ```
 
 ### Explanation: from the boxplot, we can see that the number of folds = 2 records
