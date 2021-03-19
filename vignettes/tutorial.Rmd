@@ -32,14 +32,15 @@ library(tidyr)
 ```
 
 ```{r, eval = FALSE}
-devtools::install_github("hadiyusri/project3package", build_vignette = TRUE, build_opts = c())
+devtools::install_github("anasmuhd/FirstPackage", build_vignette = TRUE, build_opts = c())
+library(FirstPackage)
 ```
 
 ## Tutorials
-This set of tuorials consists of four functions to be tested under this package:
+This set of tutorials consists of four functions to be tested under this package:
 my_t.test, my_lm, my_knn_cv, and my_rf_cv.
 
-### 1. my_t.test
+### my_t.test
 -  This function calculates values associated to the t-test such as the
 test statistics, p-value, degree of freedom, and the conclusion on
 whether we reject or fail to reject the null hypothesis tested from
@@ -54,36 +55,36 @@ $$\alpha = 0.05$$
 
 # Test 1, alternative = less
 ```{r}
-data(my_gapminder)
-my_t.test(my_gapminder$lifeExp, "less", 60)
-
+# my_gapminder <- gapminder::gapminder
+# my_t.test(my_gapminder$lifeExp, "less", 60)
 ```
 
-### Explanation: Running the t-test with alternative = less generates output with
+Explanation: Running the t-test with alternative = less generates output with
 p-value that is smaller than 0.05. Therefore, we have shown that we can reject the null
 hypothesis, given that the mu is equal to 60.
 
+
 # Test 2, alternative = greater
 ```{r}
- my_t.test(my_gapminder$lifeExp, "greater", 60)
-
+# my_t.test(my_gapminder$lifeExp, "greater", 60)
 ```
 
-### Explanation: Running the t-test with alternative = greater generates output with
+Explanation: Running the t-test with alternative = greater generates output with
 p-value that is greater than 0.05. Therefore, we fail to reject the null
 hypothesis, given that the mu is equal to 60.
 
 # Test 3, alternative = two.sided
-```{r}
-my_t.test(my_gapminder$lifeExp, "two.sided", 60)
 
+```{r}
+# my_t.test(my_gapminder$lifeExp, "two.sided", 60)
 ```
 
-### Explanation: Running the t-test with alternative = two.sided generates output with
+Explanation: Running the t-test with alternative = two.sided generates output with
 p-value that is greater than 0.05. Therefore, we fail to reject the null
-hypothesis, given that the mu is equal to 60.
+hypothesis, given that the mu is equal to 60
 
-### 2. my_lm
+### my_lm
+
 - This function is used to fit linear model and carry out linear regression.
 The function carries the following steps:
 -Demonstrate a regression using lifeExp as response variable and gdpPercap and continent as explanatory variables.
@@ -96,37 +97,37 @@ The function carries the following steps:
 The demonstration is as following:
 
 ```{r}
-my_model <- my_lm(lifeExp ~ gdpPercap * continent, 
-                my_gapminder[c("lifeExp", "gdpPercap", "continent")])
-my_model
+# my_model <- my_lm(lifeExp ~ gdpPercap * continent, my_gapminder[c("lifeExp", "gdpPercap", "continent")])
+# my_model
 ```
 
-# Deliberated from the output, we can see that the estimated gdpPercap 
+Deliberated from the output, we can see that the estimated gdpPercap 
 coefficient is at 0.00137712 which means that as gdpPercap increaees by 1 time,
 the changes in lifeExp will be in a value of 0.00137712, which makes the rate of
 growth for gdpPercap almost 100 times higher than the lifeExp.
 
 ```{r}
-# the plot of actual vs. fitted values
-lm_fit <- lm(lifeExp ~ gdpPercap * continent,
-             my_gapminder[c("lifeExp", "gdpPercap", "continent")])
-mod_fits <- fitted(lm_fit)
-my_df <- data.frame(actual = my_gapminder$lifeExp, fitted = mod_fits)
-ggplot(my_df, aes(x = fitted, y = actual)) +
-  geom_point() +
-  geom_abline(slope = 1, intercept = 0, col = "red", lty = 2) +
-  theme_bw(base_size = 12) +
-  labs(x = "Fitted values", y = "Actual values", title = "Actual vs. Fitted") +
-  theme(plot.title = element_text(hjust = 0.5))
+# lm_fit <- lm(lifeExp ~ gdpPercap * continent,
+#              my_gapminder[c("lifeExp", "gdpPercap", "continent")])
+# mod_fits <- fitted(lm_fit)
+# my_df <- data.frame(actual = my_gapminder$lifeExp, fitted = mod_fits)
+# ggplot(my_df, aes(x = fitted, y = actual)) +
+#   geom_point() +
+#   geom_abline(slope = 1, intercept = 0, col = "blue", lty = 1) +
+#   theme_bw() +
+#   labs(x = "Predicted values", y = "Actual values", title = "Actual vs. Predicted") +
+#   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-# Explanation: As we can see, the fitted values allows a linear regression line to be formed
+Explanation: As we can see, the fitted values allows a linear regression line to be formed
 because it takes the mean of every predicted values. The regression slope
 represents the average change in the actual values for every fitted unit
 of each value. The average change is then being used to generate
 the ratio of increment or decrement between two variables being observed in the data.
 
-### 3. my_knn_cv
+
+### my_knn_cv
+
 - This function predict output class \code{species} using covariates \code{bill_length_mm},
 \code{bill_depth_mm}, \code{flipper_length_mm}, and \code{body_mass_g}. We will
 be using a 5-fold cross validation to test whether it is working or not.
@@ -142,25 +143,27 @@ k_cv- integer representing the number of folds
 The demonstration is as following:
 
 ```{r}
-# covariates <- my_penguins[c("bill_length_mm", "bill_depth_mm",
+# change
+# my_penguins <- my_penguins %>% drop_na()
+# data_Frame <- my_penguins[c("bill_length_mm", "bill_depth_mm",
 #                             "flipper_length_mm", "body_mass_g")]
-# class <- my_penguins[["species"]]
+# class <- my_penguins$species
 # cv_errs <- vector(length = 10)
 # train_errs <- vector(length = 10)
 # for (i in 1:10) {
-#   cv_errs[i] <- my_knn_cv(covariates, class, i, 5)$cv_err
+#   cv_errs[i] <- my_knn_cv(data_Frame, class, i, 5)$cv_err
 #   # Count how many data points are misclassified using normal knn
-#   train_errs[i] <-
-#     length(which(class::knn(covariates, covariates, class, i) != class)) /
-#     nrow(my_penguins)
+#   if (knn(data_Frame, data_Frame, class, i) != class) {
+#     train_errs[i] <- length(knn(data_Frame, data_Frame, class, i)) / nrow(my_penguins)
+#   }
 # }
-# # Show table of errors
+# # Print table of errors
 # err_df <- cbind(1:10, data.frame(cv_errs), data.frame(train_errs))
-# colnames(err_df) <- c("k_nn", "cv_errs", "train_errs")
+# colnames(err_df) <- c("k_nn", "cv_errors", "train_errors")
 # err_df
 ```
 
-### Explanation: By looking at the training misclassification rates, we would choose
+Explanation: By looking at the training misclassification rates, we would choose
 the value of k_nn = 1 with the error of 0.000. However, looking at the CV
 misclassification rates, we would choose tany value of k_nn that end up with
 the error of 0.8018018. The  model we would choose in practice is the one
@@ -175,8 +178,7 @@ k parts (folds), to use all but 1 fold as your training data and fit the model
 , to switch which fold is your test data and repeat steps 2 and 3 until all folds
 have been test data (k times), and lastly, to compute squared error of the folds.
 
-
-### 4. my_rf_cv
+### my_rf_cv
 - This function predict output \code{body_mass_g} using covariates \code{bill_length_mm},
 \code{bill_depth_mm}, and \code{flipper_length_mm}.
 parameter: k- the number of folds
@@ -184,45 +186,41 @@ The function returns the numeric with cross validation error.
 
 ```{r}
 # data(my_penguins)
-my_penguins <- my_penguins %>% drop_na()
-
-# create a list to label the number of folds
-folds <- c(rep("2", 30), rep("5", 30), rep("10", 30))
-# create empty lists to store MSE
-MSE_2 <- rep(NA, length(30))
-MSE_5 <- rep(NA, length(30))
-MSE_10 <- rep(NA, length(30))
-# fill MSE data
-for (k in 1:30){
-  MSE_2[k] <- my_rf_cv(2)
-  MSE_5[k] <- my_rf_cv(5)
-  MSE_10[k] <- my_rf_cv(10)
-}
-# combine the label and data into one data frame
-MSE_data <- data.frame(names = folds,
-                       MSE = c(MSE_2, MSE_5, MSE_10))
-```
-```{r, fig.width=10,fig.height=11}
-# plot the data
-ggplot(data = MSE_data,
-       aes(x = names, MSE)) +
-  geom_boxplot(fill = "lightblue") +
-  theme_bw(base_size = 20) +
-  labs(title = "MSE According to Number of Folds",
-       x = "Number of Folds",
-       y = "MSE") +
-  theme(plot.title =
-          element_text(hjust = 0.5),
-        text = element_text(size = 12))
-```
-```{r}
-MSE_table <- data.frame("folds" = c(2, 5, 10),
-                        "mean" = c(mean(MSE_2), mean(MSE_5), mean(MSE_10)),
-                        "std_deviation" = c(sd(MSE_2), sd(MSE_5), sd(MSE_10)))
-kable_styling(kable(MSE_table))
+# my_penguins <- my_penguins %>% drop_na()
+# 
+# mse_mat <- matrix(nrow = 90, ncol = 2)
+# ks <- c(2, 5, 10)
+# for (i in 1:3) {
+#   k <- ks[i]
+#   for (j in 1:30) {
+#     mse_mat[(i-1)*30+j, 1] <- k
+#     mse_mat[(i-1)*30+j, 2] <- my_rf_cv(k)
+#   }
+# }
+# mse_df <- data.frame(names = mse_mat[,1], mse = mse_mat[,2])
+# ggplot(data = mse_df, aes(group = k, x = k, y = mse)) + 
+#   geom_boxplot(fill = "yellow") +
+#   labs(title = "MSE based on Folds", x = "Number of Folds", y = "MSE") +
+#   theme_bw(base_size = 15) + 
+#   theme(plot.title =
+#           element_text(hjust = 0.5),
+#         text = element_text(size = 10))
+# 
+# 
+# mse_k2 <- (mse_df %>% filter(k == 2) %>% select(mse))$mse
+# mse_k5 <- (mse_df %>% filter(k == 5) %>% select(mse))$mse
+# mse_k10 <- (mse_df %>% filter(k == 10) %>% select(mse))$mse
+# mse_stat <- rbind(c(2, mean(mse_k2), sd(mse_k2)), 
+#                        c(5, mean(mse_k5), sd(mse_k5)), 
+#                        c(10, mean(mse_k10), sd(mse_k10)))
+# mse_stats_df <- data.frame(k = mse_stat[,1],
+#                            mse_mean = mse_stat[,2], 
+#                            mse_sd = mse_stat[,3])
+# 
+# kable_styling(kable(mse_stats_df))
 ```
 
-### Explanation: from the boxplot, we can see that the number of folds = 2 records
+Explanation: from the boxplot, we can see that the number of folds = 2 records
 the highest mean among all three observations. However, the box is stretched
 to its biggest width among all three, which also can be seen in the table where 
 2 folds record the highest standard deviation of 6296.5 whereas the lowest 
