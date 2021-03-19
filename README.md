@@ -28,7 +28,7 @@ As an alternative to opt for, you can directly install the package from Github
 with the following codes:
 ``` {r, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("hadiyusri/project3package")
+devtools::install_github("hadiyusri/project3package", build_vignette = TRUE, build_opts = c())
 library(project3package)
 ```
 
