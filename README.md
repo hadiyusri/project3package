@@ -12,13 +12,23 @@
 The goal of project3package is to compute four different functions that calculate
 the t-test hypothesis testing of a data, the linear regression models, and two methods
 of cross validation (the k-nearest neighbors and random forest cross validation).
+The package will highlight distinct keywords between functions; whether they are
+inference, prediction, or a merge of both approaches in statistical analysis.
 
 ## Installation
 
-You can install the released version of project3package from the codes below:
+You can install the released version of project3package in RStudio from the codes below:
 
 ``` {r, eval = FALSE}
 install.packages("project3package")
+library(project3package)
+```
+
+As an alternative to opt for, you can directly install the package from Github
+with the following codes:
+``` {r, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("hadiyusri/project3package")
 library(project3package)
 ```
 
