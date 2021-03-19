@@ -4,11 +4,11 @@
 #' \code{bill_depth_mm}, \code{flipper_length_mm}, and \code{body_mass_g}. We will
 #' be using a 5-fold cross validation to test whether it is working or not.
 #'
-#' @param train input data frame
-#' @param cl true class value of your training data
-#' @param k_nn integer representing the number of neighbors
-#' @param k_cv integer representing the number of folds
-#' @keywords prediction, cross validation
+#' @param train input data frame.
+#' @param cl true class value of your training data.
+#' @param k_nn integer representing the number of neighbors.
+#' @param k_cv integer representing the number of folds.
+#' @keywords prediction, cross validation.
 #'
 #' @return a list that contain objects;
 #' *class: a vector of the predicted class $\hat{Y}_{i}$ for all observations
